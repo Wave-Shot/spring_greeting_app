@@ -1,5 +1,6 @@
 package com.brigelabz.spring_greeting_app.controller;
 
+import com.brigelabz.spring_greeting_app.service.GreetingService;
 import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
@@ -7,10 +8,16 @@ import java.util.*;
 @RequestMapping("/greeting")
 public class GreetingController {
 
+    private final GreetingService service;
+
+    public GreetingController(GreetingService service) {
+        this.service = service;
+    }
+
     @GetMapping
     public Map<String, String> getGreeting() {
         Map<String, String> response = new HashMap<>();
-        response.put("message", "Hello from GET");
+        response.put("message", service.getGreeting());
         return response;
     }
 
