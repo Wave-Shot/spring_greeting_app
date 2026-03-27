@@ -57,4 +57,14 @@ public class GreetingService {
 
         return updated;
     }
+
+    public String deleteGreeting(long id) {
+
+        if (repo.containsKey(id)) {
+            repo.remove(id);
+            return "Greeting deleted successfully";
+        }
+
+        return "Greeting not found";
+    }
 }
