@@ -29,4 +29,7 @@ public class GreetingService {
 
         return greeting;
     }
+    public Greeting findById(long id) {
+        return repo.get(id);
+    }
 }
