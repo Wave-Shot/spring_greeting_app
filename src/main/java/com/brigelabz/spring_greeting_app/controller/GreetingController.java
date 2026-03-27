@@ -15,9 +15,12 @@ public class GreetingController {
     }
 
     @GetMapping
-    public Map<String, String> getGreeting() {
+    public Map<String, String> getGreeting(
+            @RequestParam(required = false) String firstName,
+            @RequestParam(required = false) String lastName) {
+
         Map<String, String> response = new HashMap<>();
-        response.put("message", service.getGreeting());
+        response.put("message", service.getGreeting(firstName, lastName));
         return response;
     }
 
