@@ -1,24 +1,32 @@
 package com.brigelabz.spring_greeting_app.service;
 
+import com.brigelabz.spring_greeting_app.model.Greeting;
 import org.springframework.stereotype.Service;
+import java.util.*;
 
 @Service
 public class GreetingService {
 
-    public String getGreeting(String firstName, String lastName) {
+    private Map<Long, Greeting> repo = new HashMap<>();
+    private long counter = 1;
+
+    public Greeting saveGreeting(String firstName, String lastName) {
+
+        String message;
 
         if (firstName != null && lastName != null) {
-            return "Hello " + firstName + " " + lastName;
+            message = "Hello " + firstName + " " + lastName;
+        } else if (firstName != null) {
+            message = "Hello " + firstName;
+        } else if (lastName != null) {
+            message = "Hello " + lastName;
+        } else {
+            message = "Hello World";
         }
 
-        if (firstName != null) {
-            return "Hello " + firstName;
-        }
+        Greeting greeting = new Greeting(counter++, message);
+        repo.put(greeting.getId(), greeting);
 
-        if (lastName != null) {
-            return "Hello " + lastName;
-        }
-
-        return "Hello World";
+        return greeting;
     }
 }
