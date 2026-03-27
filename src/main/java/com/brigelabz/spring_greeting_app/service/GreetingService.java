@@ -29,7 +29,12 @@ public class GreetingService {
 
         return greeting;
     }
+
     public Greeting findById(long id) {
         return repo.get(id);
+    }
+
+    public List<Greeting> findAll() {
+        return new ArrayList<>(repo.values());
     }
 }
