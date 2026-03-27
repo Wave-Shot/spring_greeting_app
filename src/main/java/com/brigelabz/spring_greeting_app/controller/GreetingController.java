@@ -32,4 +32,13 @@ public class GreetingController {
     public List<Greeting> getAllGreetings() {
         return service.findAll();
     }
+
+    @PutMapping("/{id}")
+    public Greeting updateGreeting(
+            @PathVariable long id,
+            @RequestParam(required = false) String firstName,
+            @RequestParam(required = false) String lastName) {
+
+        return service.updateGreeting(id, firstName, lastName);
+    }
 }

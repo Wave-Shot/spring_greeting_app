@@ -37,4 +37,24 @@ public class GreetingService {
     public List<Greeting> findAll() {
         return new ArrayList<>(repo.values());
     }
+
+    public Greeting updateGreeting(long id, String firstName, String lastName) {
+
+        String message;
+
+        if (firstName != null && lastName != null) {
+            message = "Hello " + firstName + " " + lastName;
+        } else if (firstName != null) {
+            message = "Hello " + firstName;
+        } else if (lastName != null) {
+            message = "Hello " + lastName;
+        } else {
+            message = "Hello World";
+        }
+
+        Greeting updated = new Greeting(id, message);
+        repo.put(id, updated);
+
+        return updated;
+    }
 }
